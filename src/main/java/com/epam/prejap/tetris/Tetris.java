@@ -4,6 +4,7 @@ import com.epam.prejap.tetris.block.BlockFeed;
 import com.epam.prejap.tetris.game.Move;
 import com.epam.prejap.tetris.game.Playfield;
 import com.epam.prejap.tetris.game.Printer;
+import com.epam.prejap.tetris.game.TimeCounter;
 import com.epam.prejap.tetris.game.Waiter;
 import com.epam.prejap.tetris.player.Player;
 import com.epam.prejap.tetris.player.RandomPlayer;
@@ -50,10 +51,11 @@ class Tetris {
         var printer = new Printer(System.out);
         var playfield = new Playfield(rows, cols, feed, printer);
         var game = new Tetris(playfield, new Waiter(delay), new RandomPlayer());
+        var timeCounter = TimeCounter.createStart();
 
         var score = game.play();
 
         System.out.println("Score: " + score.points());
+        System.out.println("Time Spent: " + timeCounter.getTotalDuration());
     }
-
 }
