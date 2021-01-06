@@ -15,11 +15,16 @@ public class TimeCounter {
     return new TimeCounter(Instant.now());
   }
 
-  public String getTotalDuration(){
-    return Duration.between(startTime, Instant.now()).toString()
-        .substring(2)
-        .replaceAll("(\\d[HMS])(?!$)", "$1 ")
-        .toLowerCase();
+  public String totalDuration(){
+    var timePassed = getTimePassed();
+    return String.format("%02d:%02d:%02d",
+        timePassed.toHours(),
+        timePassed.toMinutesPart(),
+        timePassed.toSecondsPart());
+  }
+
+  private Duration getTimePassed() {
+    return Duration.between(startTime, Instant.now());
   }
 
 }

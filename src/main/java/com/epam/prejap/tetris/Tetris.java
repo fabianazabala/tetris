@@ -56,6 +56,6 @@ class Tetris {
         var score = game.play();
 
         System.out.println("Score: " + score.points());
-        System.out.println("Time Spent: " + timeCounter.getTotalDuration());
+        System.out.println("Time Spent: " + timeCounter.totalDuration());
     }
 }
