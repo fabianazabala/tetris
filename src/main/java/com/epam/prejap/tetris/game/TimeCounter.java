@@ -1,5 +1,6 @@
 package com.epam.prejap.tetris.game;
 
+import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
 
@@ -10,9 +11,12 @@ import java.time.Instant;
 public class TimeCounter {
 
   private final Instant startTime;
+  private final Clock clock;
 
-  TimeCounter(Instant startTime) {
+  TimeCounter(Instant startTime,
+              Clock clock) {
     this.startTime = startTime;
+    this.clock = clock;
   }
 
   /**
@@ -20,7 +24,8 @@ public class TimeCounter {
    * @return TimeCounter
    */
   public static TimeCounter createStart() {
-    return new TimeCounter(Instant.now());
+    Clock clock = Clock.systemUTC();
+    return new TimeCounter(Instant.now(clock), clock);
   }
 
   /**
@@ -36,7 +41,7 @@ public class TimeCounter {
   }
 
   private Duration getTimePassed() {
-    return Duration.between(startTime, Instant.now());
+    return Duration.between(startTime, Instant.now(clock));
   }
 
 }
